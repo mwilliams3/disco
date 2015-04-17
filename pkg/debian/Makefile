@@ -7,16 +7,15 @@ MAINTAINER_SCRIPTS = disco-master.init python3-disco-master.init \
 
 .PHONY: build clean
 
-build: ../../Packages.gz
+all: clean build
 
 clean:
 	(cd .. && dpkg-buildpackage -d -T clean)
 	(rm -f $(MAINTAINER_SCRIPTS))
 	(cd ../.. && rm -f *.changes *.dsc *.deb *.gz)
 
-../../Packages.gz: $(MAINTAINER_SCRIPTS) changelog compat control copyright rules
-	(cd .. && dpkg-buildpackage -d)
-	(cd ../.. && dpkg-scanpackages . /dev/null | gzip -9c > $(@F))
+build: $(MAINTAINER_SCRIPTS) changelog compat control copyright rules
+	(cd .. && dpkg-buildpackage -us -uc -d)
 
 disco-master.init python3-disco-master.init: gen.disco-master.sh
 	(./$< > $@ && chmod 755 $@)
