@@ -23,19 +23,24 @@ running() {
 }
 
 start_server() {
-        su - disco --command="/usr/bin/ssh-agent ${RELBIN}/disco start"
+        su - disco --command='_agent_info="\`ssh-agent\`" && \
+ echo "\$_agent_info" > ~disco/agent_info && \
+ eval "\$_agent_info" true && \
+ /usr/bin/ssh-agent ${RELBIN}/disco start'
         errcode=\$?
 	return \$errcode
 }
 
 stop_server() {
-        su - disco --command="${RELBIN}/disco stop"
+        su - disco --command='eval "\`cat ~disco/agent_info\`" true && \
+ ${RELBIN}/disco stop && \
+ kill \$SSH_AGENT_PID'
         errcode=\$?
 	return \$errcode
 }
 
 restart_server() {
-        su - disco --command="${RELBIN}/disco restart"
+        stop_server && start_server
         errcode=\$?
         return \$errcode
 }
