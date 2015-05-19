@@ -26,7 +26,7 @@ start_server() {
         su - disco --command='_agent_info="\`ssh-agent\`" && \
  echo "\$_agent_info" > ~disco/agent_info && \
  eval "\$_agent_info" true && \
- /usr/bin/ssh-agent ${RELBIN}/disco start'
+ ${RELBIN}/disco start'
         errcode=\$?
 	return \$errcode
 }
