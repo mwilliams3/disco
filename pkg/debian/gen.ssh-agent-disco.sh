@@ -1,3 +1,6 @@
+#!/bin/bash
+
+cat << EOF
 # ssh-agent-disco - myservice job file
 
 description "start ssh-agent for disco user"
@@ -11,3 +14,4 @@ stop on runlevel [016]
 respawn
 expect fork
 exec ssh-agent -a ~disco/.ssh-agent.socket > ~disco/.ssh-agent.env
+EOF

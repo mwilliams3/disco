@@ -21,6 +21,9 @@ clean:
 disco-master.init python3-disco-master.init: gen.disco-master.sh
 	(./$< > $@ && chmod 755 $@)
 
+disco-master.init python3-disco-master.init: gen.ssh-agent-disco.sh
+	(./$< > $@ && chmod 755 $@)
+
 disco-master.preinst disco-master.prerm python3-disco-master.preinst python3-disco-master.prerm: gen.stop-master.sh
 	(./$< > $@ && chmod 755 $@)
 
