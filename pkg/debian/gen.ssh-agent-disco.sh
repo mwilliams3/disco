@@ -1,9 +1,9 @@
 #!/bin/bash
 
 cat << EOF
-# ssh-agent-disco - myservice job file
+# ssh-agent-disco - ssh-agent for Disco
 
-description "start ssh-agent for disco user"
+description "ssh-agent for disco user"
 author "Justin Van Winkle <jvanwinkle@ebay.com>"
 
 

@@ -23,7 +23,7 @@ running() {
 }
 
 start_server() {
-        su - disco --command="/usr/bin/ssh-agent ${RELBIN}/disco start"
+        su - disco --command="${RELBIN}/disco start"
         errcode=\$?
 	return \$errcode
 }
