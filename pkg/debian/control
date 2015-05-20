@@ -47,5 +47,5 @@ Package: ssh-agent-disco
 Architecture: all
 Section: python
 Depends: ${misc:Depends}, openssh-client, disco-master (= ${source:Version})
-Description: Disco client
- This is Disco client for Python3.
+Description: ssh-agent daemon config
+ Set up ssh-agent for use by disco user.
