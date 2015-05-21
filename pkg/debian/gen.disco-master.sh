@@ -23,7 +23,8 @@ running() {
 }
 
 start_server() {
-        su - disco --command="/usr/bin/ssh-agent ${RELBIN}/disco start"
+        export SSH_AUTH_SOCK=/usr/var/disco/.ssh-agent.socket
+        su - disco --command="${RELBIN}/disco start"
         errcode=\$?
 	return \$errcode
 }

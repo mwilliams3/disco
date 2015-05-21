@@ -3,8 +3,8 @@ export
 MAINTAINER_SCRIPTS = disco-master.init python3-disco-master.init \
 		     disco-master.preinst disco-master.prerm \
 		     python3-disco-master.preinst python3-disco-master.prerm \
-		     disco-node.postinst disco-node.postrm
-
+		     disco-node.postinst disco-node.postrm \
+                     ssh-agent-disco.upstart
 .PHONY: build clean
 
 build: ../../Packages.gz
@@ -19,6 +19,9 @@ clean:
 	(cd ../.. && dpkg-scanpackages . /dev/null | gzip -9c > $(@F))
 
 disco-master.init python3-disco-master.init: gen.disco-master.sh
+	(./$< > $@ && chmod 755 $@)
+
+ssh-agent-disco.upstart: gen.ssh-agent-disco.sh
 	(./$< > $@ && chmod 755 $@)
 
 disco-master.preinst disco-master.prerm python3-disco-master.preinst python3-disco-master.prerm: gen.stop-master.sh

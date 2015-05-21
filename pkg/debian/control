@@ -42,3 +42,10 @@ Section: python
 Depends: ${misc:Depends}, ${python3:Depends}, python3 (>= 3.2)
 Description: Disco client
  This is Disco client for Python3.
+
+Package: ssh-agent-disco
+Architecture: all
+Section: python
+Depends: ${misc:Depends}, openssh-client, disco-master (= ${source:Version})
+Description: ssh-agent daemon config
+ Set up ssh-agent for use by disco user.
