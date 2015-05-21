@@ -23,7 +23,7 @@ running() {
 }
 
 start_server() {
-        source ~disco/.ssh-agent.env
+        . ~disco/.ssh-agent.env
         su - disco --command="${RELBIN}/disco start"
         errcode=\$?
 	return \$errcode
